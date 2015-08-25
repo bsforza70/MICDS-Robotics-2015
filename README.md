@@ -1,6 +1,10 @@
 # MICDS-Robotics-2015
 This is the repo that the MICDS Robotics Team of 2015 will be using to share code and collaborate.
 
+#Full FTC Manual
+
+https://github.com/bsforza70/MICDS-Robotics-2015/blob/master/FTC%20SRC/doc/tutorial/FTCTraining_Manual.pdf
+
 # FTC Source:
 FTC Android Studio project to create FTC Robot Controller app.
 
