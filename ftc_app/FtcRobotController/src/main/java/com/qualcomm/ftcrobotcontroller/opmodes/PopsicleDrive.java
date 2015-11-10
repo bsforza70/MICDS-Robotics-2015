@@ -29,5 +29,13 @@ public class PopsicleDrive extends OpMode{
 
         leftMotor.setPower(leftY);
         rightMotor.setPower(rightY);
+        if(gamepad1.dpad_down) {
+            leftMotor.setPower(0.5);
+            rightMotor.setPower(0.5);
+
+        }
     }
+
+    //motors are weird yep
+
 }
