@@ -22,8 +22,14 @@ public class PopsicleDrive extends OpMode{
         /*
         servo1 = hardwareMap.servo.get("servo_name");
         servo2 = hardwareMap.servo.get("other_servo_name");
-         */
 
+        servo1.setPosition(0.5); //between 0 and 1
+
+        You can set the MIN_POSITION and the MAX_POSITION to be something smaller (like 0.2 and
+        0.8) and use scaleRange(min,max) to scale it. This can be nice if you only need half the
+        values anyway and can simply just refer to it as 1 instead of whatever decimal you want for
+        the top.
+        */
 
         //reverses the right motor
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -39,11 +45,12 @@ public class PopsicleDrive extends OpMode{
 
         //TELEMETRY testerino
 
-        telemetry.addData("Popsicle Telemetry");
+        telemetry.addData("Text", "Popsicle Telemetry");
         telemetry.addData("Left Motor", leftMotor.getPower());
         telemetry.addData("Right Motor", rightMotor.getPower());
         //telemetry.addData("servo_name", servo_name.getPosition());
         //telemetry.addData("other_servo_name", other_servo_name.getPortNumber());
+        telemetry.addData("Time Running", getRuntime());
 
     }
 
