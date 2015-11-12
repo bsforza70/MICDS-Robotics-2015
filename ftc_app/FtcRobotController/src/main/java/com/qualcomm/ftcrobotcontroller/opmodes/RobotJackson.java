@@ -40,5 +40,11 @@ public class RobotJackson extends OpMode{
         if(gamepad1.left_trigger > 0.05) {
             grapplingWinch.setPower(-1);
         }
+
+        telemetry.addData("Left Motor", leftMotor.getPower());
+        telemetry.addData("Right Motor", rightMotor.getPower());
+        telemetry.addData("Grappling Hook Pin", grapplinghookPin.getPower());
+        telemetry.addData("Grappling Hook Winch", grapplingWinch.getPower());
+
     }
 }

@@ -38,5 +38,10 @@ public class RobotEhan extends OpMode{
         if(gamepad1.dpad_down) {
             tubeArm.setPower(-0.5);
         }
+
+        telemetry.addData("Left Motor", leftMotor.getPower());
+        telemetry.addData("Right Motor", rightMotor.getPower());
+        telemetry.addData("Tube Motor", tubeArm.getPower());
+
     }
 }
