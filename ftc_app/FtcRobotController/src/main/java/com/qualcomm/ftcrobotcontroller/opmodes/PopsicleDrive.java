@@ -18,6 +18,13 @@ public class PopsicleDrive extends OpMode{
         leftMotor = hardwareMap.dcMotor.get("left_drive");
         rightMotor = hardwareMap.dcMotor.get("right_drive");
 
+        //Servo stuff:
+        /*
+        servo1 = hardwareMap.servo.get("servo_name");
+        servo2 = hardwareMap.servo.get("other_servo_name");
+         */
+
+
         //reverses the right motor
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
     }
@@ -29,13 +36,15 @@ public class PopsicleDrive extends OpMode{
 
         leftMotor.setPower(leftY);
         rightMotor.setPower(rightY);
-        if(gamepad1.dpad_down) {
-            leftMotor.setPower(0.5);
-            rightMotor.setPower(0.5);
 
-        }
+        //TELEMETRY testerino
+
+        telemetry.addData("Popsicle Telemetry");
+        telemetry.addData("Left Motor", leftMotor.getPower());
+        telemetry.addData("Right Motor", rightMotor.getPower());
+        //telemetry.addData("servo_name", servo_name.getPosition());
+        //telemetry.addData("other_servo_name", other_servo_name.getPortNumber());
+
     }
-
-    //motors are weird yep
 
 }
