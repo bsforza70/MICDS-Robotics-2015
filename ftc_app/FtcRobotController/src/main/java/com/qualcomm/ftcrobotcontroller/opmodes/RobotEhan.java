@@ -11,6 +11,8 @@ public class RobotEhan extends OpMode{
     DcMotor leftMotor;
     DcMotor rightMotor;
     DcMotor tubeArm;
+    DcMotor ballLauncherLeft;
+    DcMotor ballLauncherRight;
 
 
     @Override
@@ -18,6 +20,9 @@ public class RobotEhan extends OpMode{
         leftMotor = hardwareMap.dcMotor.get("left_drive");
         rightMotor = hardwareMap.dcMotor.get("right_drive");
         tubeArm = hardwareMap.dcMotor.get("tubeArm");
+        ballLauncherLeft = hardwareMap.dcMotor.get("ballLauncherLeft");
+        ballLauncherRight = hardwareMap.dcMotor.get("ballLauncherRight");
+
 
         //reverses the right motor
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -39,9 +44,15 @@ public class RobotEhan extends OpMode{
             tubeArm.setPower(-0.5);
         }
 
+        if(gamepad1.a) {
+            ballLauncherLeft.setPower(1.0);
+            ballLauncherRight.setPower(1.0);
+        }
+
         telemetry.addData("Left Motor", leftMotor.getPower());
         telemetry.addData("Right Motor", rightMotor.getPower());
         telemetry.addData("Tube Motor", tubeArm.getPower());
+        telemetry.addData("Baseball Launchers", ballLauncherLeft.getPower());
 
     }
 }
