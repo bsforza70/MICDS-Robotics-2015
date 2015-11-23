@@ -44,9 +44,11 @@ public class RobotClayton extends OpMode{
             bucketMotor.setPower(-1.0);
         }
 
-        telemetry.addData("Left Motor", leftMotor.getPower());
-        telemetry.addData("Right Motor", rightMotor.getPower());
-        telemetry.addData("Bucket Motor", bucketMotor.getPower());
+        //Legacy motors are write-only
+
+        //telemetry.addData("Left Motor", leftMotor.getPower());
+        //telemetry.addData("Right Motor", rightMotor.getPower());
+        //telemetry.addData("Bucket Motor", bucketMotor.getPower());
         telemetry.addData("Servo", servoMotor.getPosition());
     }
 }

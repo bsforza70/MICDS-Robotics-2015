@@ -59,8 +59,12 @@ public class FtcOpModeRegister implements OpModeRegister {
 
     manager.register("GamepadTest", GamepadTest.class);
 
-    manager.register("PopsicleDrive", PopsicleDrive.class);
-    manager.register("LinearPopsicleDrive", LinearPopsicleDrive.class);
+    //manager.register("PopsicleDrive", PopsicleDrive.class);
+    //manager.register("LinearPopsicleDrive", LinearPopsicleDrive.class);
+    manager.register("RobotJackson", RobotJackson.class);
+    manager.register("RobotClayton", RobotClayton.class);
+    manager.register("RobotEhan", RobotEhan.class);
+
 
     manager.register("NullOp", NullOp.class);
 

@@ -49,10 +49,12 @@ public class RobotEhan extends OpMode{
             ballLauncherRight.setPower(1.0);
         }
 
-        telemetry.addData("Left Motor", leftMotor.getPower());
-        telemetry.addData("Right Motor", rightMotor.getPower());
-        telemetry.addData("Tube Motor", tubeArm.getPower());
-        telemetry.addData("Baseball Launchers", ballLauncherLeft.getPower());
+        //Legacy motors are write-only
+
+        //telemetry.addData("Left Motor", leftMotor.getPower());
+        //telemetry.addData("Right Motor", rightMotor.getPower());
+        //telemetry.addData("Tube Motor", tubeArm.getPower());
+        //telemetry.addData("Baseball Launchers", ballLauncherLeft.getPower());
 
     }
 }
