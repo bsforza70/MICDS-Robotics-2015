@@ -11,9 +11,12 @@ public class JacksonAutonomousMountain extends LinearOpMode {
     DcMotor rightMotor;
     DcMotor grapplingWinch;
     DcMotor leftMotor;
+    DcMotor bucketArm;
 
     Servo servoMotorGateRight;
     Servo servoMotorGateLeft;
+    Servo rescuerRight;
+    Servo rescuerLeft;
 
     LightSensor sensorLight;
     LightSensor allianceDetector;
@@ -22,20 +25,22 @@ public class JacksonAutonomousMountain extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-
         grapplingPin = hardwareMap.dcMotor.get("grapplingPin");
         rightMotor = hardwareMap.dcMotor.get("right_drive");
         grapplingWinch = hardwareMap.dcMotor.get("grapplingWinch");
         leftMotor = hardwareMap.dcMotor.get("left_drive");
+        bucketArm = hardwareMap.dcMotor.get("arm");
 
         servoMotorGateRight = hardwareMap.servo.get("servogr");
         servoMotorGateLeft = hardwareMap.servo.get("servogl");
+        rescuerRight = hardwareMap.servo.get("rightres");
+        rescuerLeft = hardwareMap.servo.get("leftres");
 
-        sensorLight = hardwareMap.lightSensor.get("sensorl");
+        sensorLight = hardwareMap.lightSensor.get("sensor1");
         allianceDetector = hardwareMap.lightSensor.get("sensor2");
 
         //reverses the right motor
-        rightMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //Take a wild guess bud
         waitForStart();
