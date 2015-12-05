@@ -11,29 +11,27 @@ public class RobotJackson extends OpMode{
     //Initializing the motors as DcMotors
     DcMotor grapplingPin;
     DcMotor rightMotor;
-    //DcMotorController MC1;
     DcMotor grapplingWinch;
     DcMotor leftMotor;
 
     Servo servoMotorGateRight;
     Servo servoMotorGateLeft;
-    //DcMotorController MC2;
 
     LightSensor sensorLight;
+    LightSensor allianceDetector;
 
     @Override
     public void init() {
         grapplingPin = hardwareMap.dcMotor.get("grapplingPin");
         rightMotor = hardwareMap.dcMotor.get("right_drive");
-        //MC1 = hardwareMap.dcMotorController.get("controller1");
-        leftMotor = hardwareMap.dcMotor.get("left_drive");
         grapplingWinch = hardwareMap.dcMotor.get("grapplingWinch");
+        leftMotor = hardwareMap.dcMotor.get("left_drive");
 
         servoMotorGateRight = hardwareMap.servo.get("servogr");
         servoMotorGateLeft = hardwareMap.servo.get("servogl");
-        //MC2 = hardwareMap.dcMotorController.get("controller2");
 
         sensorLight = hardwareMap.lightSensor.get("sensorl");
+        allianceDetector = hardwareMap.lightSensor.get("sensor2");
 
         //reverses the right motor
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -46,8 +44,6 @@ public class RobotJackson extends OpMode{
 
         leftMotor.setPower(leftY);
         rightMotor.setPower(rightY);
-
-        double light = sensorLight.getLightDetected();
 
         if(gamepad1.a) {
             grapplingPin.setPower(1.0);
@@ -68,11 +64,6 @@ public class RobotJackson extends OpMode{
             grapplingWinch.setPower(-1);
         }
 
-        if (gamepad1.right_bumper) {
-            servoMotorTilt.setPosition(servoMotorTilt.getPosition() + 0.05);
-        } else if (gamepad1.left_bumper) {
-            servoMotorTilt.setPosition(servoMotorTilt.getPosition() - 0.05 );
-        }
         if (gamepad1.a) {
             servoMotorGateLeft.setPosition(servoMotorGateLeft.getPosition() + 0.05);
         } else if (gamepad1.b) {
@@ -91,17 +82,6 @@ public class RobotJackson extends OpMode{
         //telemetry.addData("Right Motor", rightMotor.getPower());
         //telemetry.addData("Grappling Hook Pin", grapplinghookPin.getPower());
         // telemetry.addData("Grappling Hook Winch", grapplingWinch.getPower());
-
-
-        telemetry.addData("Light Sensed", sensorLight.getLightDetected());
-        //Change to whatever value corresponds to blue
-        if(light <= 0.5){
-            telemetry.addData("Text", "Red");
-        }
-        //Change to whatever value corresponds to red
-        if(light > 0.5){
-            telemetry.addData("Text", "Blue");
-        }
 
     }
 }
