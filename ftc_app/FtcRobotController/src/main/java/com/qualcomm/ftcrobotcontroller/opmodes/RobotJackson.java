@@ -40,7 +40,7 @@ public class RobotJackson extends OpMode{
         allianceDetector = hardwareMap.lightSensor.get("sensor2");
 
         //reverses the right motor
-        leftMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     @Override
@@ -63,81 +63,63 @@ public class RobotJackson extends OpMode{
         }
 
         if(gamepad1.right_trigger > 0.05) {
-            grapplingWinch.setPower(1);
+            grapplingPin.setPower(1);
         }
 
-        if(gamepad1.left_trigger > 0.05) {
+        if(gamepad1.right_bumper){
+            grapplingPin.setPower(-1);
+        }
+
+        if(gamepad1.left_bumper){
             grapplingWinch.setPower(-1);
         }
 
+        if(gamepad1.left_trigger > 0.05) {
+            grapplingWinch.setPower(1);
+        }
+
         if (gamepad2.a) {
-            if(servoMotorGateLeft.getPosition() == 0){
-                servoMotorGateLeft.setPosition(servoMotorGateLeft.getPosition() + 0.05);
-            } else {
-                telemetry.addData("Left Gate", "STOP - Nicole Truman-Shaw");
-            }
+            servoMotorGateLeft.setPosition(0.75);
         }
 
         if (gamepad2.b) {
-            if(servoMotorGateLeft.getPosition() == 0){
-                telemetry.addData("Left Gate", "STOP - Nicole Truman-Shaw");
-            } else {
-                servoMotorGateLeft.setPosition(servoMotorGateLeft.getPosition() - 0.05);
-            }
+            servoMotorGateLeft.setPosition(.14);
         }
 
         if (gamepad2.x) {
-            if(servoMotorGateRight.getPosition() == 0){
-                servoMotorGateRight.setPosition(servoMotorGateRight.getPosition() + 0.05);
-            } else {
-                telemetry.addData("Right Gate", "STOP - Nicole Truman-Shaw");
-            }
+            servoMotorGateRight.setPosition(0.5);
         }
 
         if (gamepad2.y) {
-            if(servoMotorGateRight.getPosition() == 0){
-                telemetry.addData("Right Gate", "STOP - Nicole Truman-Shaw");
-            } else {
-                servoMotorGateRight.setPosition(servoMotorGateRight.getPosition() - 0.05);
-            }
+            servoMotorGateRight.setPosition(1);
         }
 
         if (gamepad2.left_trigger > 0.05){
-            if(rescuerLeft.getPosition() == 0){
-                rescuerLeft.setPosition(rescuerLeft.getPosition() + 0.05);
-            } else {
-                telemetry.addData("Left Rescuer", "STOP - Nicole Truman-Shaw");
-            }
+            rescuerLeft.setPosition(0);
         }
 
         if (gamepad2.left_bumper){
-            if(rescuerLeft.getPosition() == 0){
-                telemetry.addData("Left Rescuer", "STOP - Nicole Truman-Shaw");
-            } else {
-                rescuerLeft.setPosition(rescuerLeft.getPosition() - 0.05);
-            }
+            rescuerLeft.setPosition(0.5);
         }
 
         if (gamepad2.right_trigger > 0.05){
-            if(rescuerRight.getPosition() == 0){
-                rescuerRight.setPosition(rescuerRight.getPosition() + 0.05);
-            } else {
-                telemetry.addData("Right Rescuer", "STOP - Nicole Truman-Shaw");
-            }
+            rescuerRight.setPosition(1);
         }
 
         if (gamepad2.right_bumper){
-            if(rescuerRight.getPosition() == 0){
-                telemetry.addData("Right Rescuer", "STOP - Nicole Truman-Shaw");
-            } else {
-                rescuerRight.setPosition(rescuerRight.getPosition() - 0.05);
-            }
+                rescuerRight.setPosition(0.5);
         }
 
         if (gamepad2.left_stick_y > 0.05){
             bucketArm.setPower(1);
-        } else if (gamepad2.left_stick_y < -0.05){
-            bucketArm.setPower(-1);
+        }
+
+        if (gamepad2.left_stick_y < -0.05){
+            bucketArm.setPower(-0.2);
+        }
+
+        if(gamepad2.left_stick_y == 0){
+            bucketArm.setPower(0);
         }
 
         telemetry.addData("Text", "Running!");

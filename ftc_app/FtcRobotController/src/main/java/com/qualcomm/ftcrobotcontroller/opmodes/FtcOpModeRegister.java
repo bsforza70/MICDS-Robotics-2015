@@ -62,26 +62,32 @@ public class FtcOpModeRegister implements OpModeRegister {
     //manager.register("PopsicleDrive", PopsicleDrive.class);
     //manager.register("LinearPopsicleDrive", LinearPopsicleDrive.class);
       manager.register("RobotJackson", RobotJackson.class);
-      manager.register("JacksonAutonomousMountain", JacksonAutonomousMountain.class);
-      manager.register("JacksonAutonomous", JacksonAutonomous.class);
+      manager.register("BlueSameSideAuto", BlueSameSideAuto.class);
+      manager.register("SameSideAuto", SameSideAuto.class);
+      manager.register("BlueSameSideMountainAuto", BlueSameSideMountainAuto.class);
+      manager.register("SameSideMountainAuto", SameSideMountainAuto.class);
+      manager.register("BlueFarSideAuto", BlueSameSideAuto.class);
+      manager.register("FarSideAuto", FarSideAuto.class);
+      manager.register("BlueFarSideMountainAuto", BlueFarSideMountainAuto.class);
+      manager.register("FarSideMountainAuto", FarSideMountainAuto.class);
     //manager.register("RobotClayton", RobotClayton.class);
     //manager.register("RobotEhan", RobotEhan.class);
 
 
-      manager.register("NullOp", NullOp.class);
+      //manager.register("NullOp", NullOp.class);
 
     //manager.register("MatrixK9TeleOp", MatrixK9TeleOp.class);
-      manager.register("K9TeleOp", K9TeleOp.class);
-      manager.register("K9Line", K9Line.class);
-      manager.register ("PushBotAuto", PushBotAuto.class);
-      manager.register ("PushBotManual", PushBotManual.class);
+      //manager.register("K9TeleOp", K9TeleOp.class);
+      //manager.register("K9Line", K9Line.class);
+      //manager.register ("PushBotAuto", PushBotAuto.class);
+      //manager.register ("PushBotManual", PushBotManual.class);
 
 
 
     /*
      * Uncomment any of the following lines if you want to register an op mode.
      */
-      manager.register("MR Gyro Test", MRGyroTest.class);
+      //manager.register("MR Gyro Test", MRGyroTest.class);
 
     //manager.register("AdafruitRGBExample", AdafruitRGBExample.class);
     //manager.register("ColorSensorDriver", ColorSensorDriver.class);
