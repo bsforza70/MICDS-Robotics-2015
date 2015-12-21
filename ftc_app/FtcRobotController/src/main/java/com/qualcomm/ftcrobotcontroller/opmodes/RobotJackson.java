@@ -128,7 +128,5 @@ public class RobotJackson extends OpMode{
         //telemetry.addData("Right Motor", rightMotor.getPower());
         //telemetry.addData("Grappling Hook Pin", grapplinghookPin.getPower());
         // telemetry.addData("Grappling Hook Winch", grapplingWinch.getPower());
-
-
     }
 }

@@ -61,15 +61,16 @@ public class FtcOpModeRegister implements OpModeRegister {
 
     //manager.register("PopsicleDrive", PopsicleDrive.class);
     //manager.register("LinearPopsicleDrive", LinearPopsicleDrive.class);
-      manager.register("RobotJackson", RobotJackson.class);
-      manager.register("BlueSameSideAuto", BlueSameSideAuto.class);
-      manager.register("SameSideAuto", SameSideAuto.class);
-      manager.register("BlueSameSideMountainAuto", BlueSameSideMountainAuto.class);
-      manager.register("SameSideMountainAuto", SameSideMountainAuto.class);
-      manager.register("BlueFarSideAuto", BlueSameSideAuto.class);
-      manager.register("FarSideAuto", FarSideAuto.class);
-      manager.register("BlueFarSideMountainAuto", BlueFarSideMountainAuto.class);
-      manager.register("FarSideMountainAuto", FarSideMountainAuto.class);
+      manager.register("PopsicleDrive", PopsicleDrive.class);
+      manager.register("RedAuto", RedAuto.class);
+    //manager.register("BlueSameSideAuto", BlueSameSideAuto.class);
+    //manager.register("SameSideAuto", SameSideAuto.class);
+    //manager.register("BlueSameSideMountainAuto", BlueSameSideMountainAuto.class);
+    //manager.register("SameSideMountainAuto", SameSideMountainAuto.class);
+    //manager.register("BlueFarSideAuto", BlueSameSideAuto.class);
+    //manager.register("FarSideAuto", FarSideAuto.class);
+    //manager.register("BlueFarSideMountainAuto", BlueFarSideMountainAuto.class);
+    //manager.register("FarSideMountainAuto", FarSideMountainAuto.class);
     //manager.register("RobotClayton", RobotClayton.class);
     //manager.register("RobotEhan", RobotEhan.class);
 
