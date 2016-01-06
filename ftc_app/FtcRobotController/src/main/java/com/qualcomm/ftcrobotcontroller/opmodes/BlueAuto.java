@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.LightSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class RedAuto extends LinearOpMode {
+public class BlueAuto extends LinearOpMode {
 
     DcMotor rightDrive;
     DcMotor leftDrive;
@@ -58,16 +58,16 @@ public class RedAuto extends LinearOpMode {
 
         //Move from start to beacon
         forward(blockTime);
-        turnLeft(halfTurnTime);
+        turnRight(halfTurnTime);
         while (lineSensor.getLightDetected() < 0.5){
             forward(0); //Go until you get to the guiding line (if bad, this is about 2.828 blocks)
         }
 
-        turnLeft(halfTurnTime); //Robot should be facing the beacon head on now :)
+        turnRight(halfTurnTime);
 
-        //Light Sensor Stuff for Beacon
+        //Light Sensor Stuff for Beacon (Assuming light sensor is on right side of 'bot
         if(checkColor()){
-            //matching alliance is detected (red)
+            //matching alliance is detected (blue)
             turnRight(halfTurnTime);
             rightDrive.setPower(1.0);
             leftDrive.setPower(0.5);
@@ -77,7 +77,7 @@ public class RedAuto extends LinearOpMode {
             leftDrive.setPower(-0.5);
             sleep(1000);
         } else {
-            //other alliance is detected (blue
+            //other alliance is detected (red)
             turnLeft(halfTurnTime);
             rightDrive.setPower(0.5);
             leftDrive.setPower(1.0);
@@ -87,16 +87,16 @@ public class RedAuto extends LinearOpMode {
             leftDrive.setPower(-1.0);
             sleep(1000);
         }
-        
+
         //Move back a little bit so you turn cleanly
         rightDrive.setPower(-1.0);
         leftDrive.setPower(-1.0);
         sleep(500);
 
         //Move from Beacon to mountain on other side
-        turnRight(turnTime * 2);
+        turnLeft(turnTime * 2);
         forward(blockTime * 2);
-        turnLeft(halfTurnTime);
+        turnRight(halfTurnTime);
         forward(blockTime * 2);
 
         //Stop moving after
@@ -138,6 +138,6 @@ public class RedAuto extends LinearOpMode {
     } //true if red, false if blue
 
 }   //TO-DO: Write what happens for both colors the beacon could be (rescuers, button press)
-    //Write how the light sensor will be used to approach the bacon and align with it
-    //Keep this matched with tele-op on new parts added to the robot.
-    //Get those two measurements ASAP and test!
+//Write how the light sensor will be used to approach the bacon and align with it
+//Keep this matched with tele-op on new parts added to the robot.
+//Get those two measurements ASAP and test!
