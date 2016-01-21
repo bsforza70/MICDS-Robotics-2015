@@ -15,6 +15,7 @@ public class PopsicleDrive extends OpMode {
     DcMotor rightArm;
     DcMotor leftArm;
     DcMotor sweeper;
+    //DcMotor armConveryor;
 
     Servo rightPoleGrab;
     Servo leftPoleGrab;
@@ -32,6 +33,7 @@ public class PopsicleDrive extends OpMode {
         rightArm = hardwareMap.dcMotor.get("right_arm");
         leftArm = hardwareMap.dcMotor.get("left_arm");
         sweeper = hardwareMap.dcMotor.get("sweeper");
+        //armConveyor = hardwaremap.dcMotor.get("conveyor:);
 
         rightPoleGrab = hardwareMap.servo.get("right_res");
         leftPoleGrab = hardwareMap.servo.get("left_res");
@@ -61,6 +63,16 @@ public class PopsicleDrive extends OpMode {
         } else {
             sweeper.setPower(0);
         }
+
+        /*
+        if(gamepad1.left_bumper){
+            armConveyor.setPower(-1);
+        } else if(gamepad1.right_bumper){
+            armConveyor.setPower(1);
+        } else {
+            armConveyor.setPower(0);
+        }
+         */
 
         //Servo positions need to be re-found. Could use telemetry and slowly adding a position up and down like OG code
         if (gamepad2.a) {
