@@ -12,9 +12,12 @@ public class PopsicleDrive extends OpMode {
     DcMotor rightDrive;
     DcMotor leftDrive;
     DcMotorController driveController;
+    DcMotor rightArm;
+    DcMotor leftArm;
+    DcMotor sweeper;
 
-    Servo rightRescuer;
-    Servo leftRescuer;
+    Servo rightPoleGrab;
+    Servo leftPoleGrab;
 
     LightSensor lineSensor;
     ColorSensor allianceSensor;
@@ -26,9 +29,12 @@ public class PopsicleDrive extends OpMode {
         rightDrive = hardwareMap.dcMotor.get("right_drive");
         leftDrive = hardwareMap.dcMotor.get("left_drive");
         driveController = hardwareMap.dcMotorController.get("drive");
+        rightArm = hardwareMap.dcMotor.get("right_arm");
+        leftArm = hardwareMap.dcMotor.get("left_arm");
+        sweeper = hardwareMap.dcMotor.get("sweeper");
 
-        rightRescuer = hardwareMap.servo.get("right_res");
-        leftRescuer = hardwareMap.servo.get("left_res");
+        rightPoleGrab = hardwareMap.servo.get("right_res");
+        leftPoleGrab = hardwareMap.servo.get("left_res");
 
         lineSensor = hardwareMap.lightSensor.get("line_sensor");
         allianceSensor = hardwareMap.colorSensor.get("ally_sensor");
@@ -45,20 +51,32 @@ public class PopsicleDrive extends OpMode {
         rightDrive.setPower(rightY);
         leftDrive.setPower(leftY);
 
+        rightArm.setPower(-gamepad2.right_stick_y);
+        leftArm.setPower(-gamepad2.left_stick_y);
+
+        if(gamepad2.left_bumper){
+            sweeper.setPower(-1);
+        } else if(gamepad2.right_bumper){
+            sweeper.setPower(1);
+        } else {
+            sweeper.setPower(0);
+        }
+
+        //Servo positions need to be re-found. Could use telemetry and slowly adding a position up and down like OG code
         if (gamepad2.a) {
-            leftRescuer.setPosition(0.75);  //Down
+            leftPoleGrab.setPosition(0.75);  //Down
         }
 
         if (gamepad2.b) {
-            leftRescuer.setPosition(.14);   //Up
+            leftPoleGrab.setPosition(.14);   //Up
         }
 
         if (gamepad2.x) {
-            rightRescuer.setPosition(0.5);  //Down
+            rightPoleGrab.setPosition(0.5);  //Down
         }
 
         if (gamepad2.y) {
-            rightRescuer.setPosition(1);    //Up
+            rightPoleGrab.setPosition(1);    //Up
         }
         telemetry.addData("Text", "Running!");
 

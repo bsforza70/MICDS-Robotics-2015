@@ -137,7 +137,4 @@ public class BlueAuto extends LinearOpMode {
         return (allianceSensor.red() > allianceSensor.blue());
     } //true if red, false if blue
 
-}   //TO-DO: Write what happens for both colors the beacon could be (rescuers, button press)
-//Write how the light sensor will be used to approach the bacon and align with it
-//Keep this matched with tele-op on new parts added to the robot.
-//Get those two measurements ASAP and test!
+}   //TO-DO: Do the two measurements and test!
