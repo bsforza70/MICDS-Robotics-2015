@@ -12,10 +12,10 @@ public class PopsicleDrive extends OpMode {
     DcMotor rightDrive;
     DcMotor leftDrive;
     DcMotorController driveController;
-    DcMotor rightArm;
-    DcMotor leftArm;
+    DcMotor arm;
     DcMotor sweeper;
-    //DcMotor armConveryor;
+    DcMotor armConveyor;
+    DcMotor rope;
 
     Servo rightPoleGrab;
     Servo leftPoleGrab;
@@ -30,10 +30,10 @@ public class PopsicleDrive extends OpMode {
         rightDrive = hardwareMap.dcMotor.get("right_drive");
         leftDrive = hardwareMap.dcMotor.get("left_drive");
         driveController = hardwareMap.dcMotorController.get("drive");
-        rightArm = hardwareMap.dcMotor.get("right_arm");
-        leftArm = hardwareMap.dcMotor.get("left_arm");
+        arm = hardwareMap.dcMotor.get("arm");
         sweeper = hardwareMap.dcMotor.get("sweeper");
-        //armConveyor = hardwaremap.dcMotor.get("conveyor:);
+        armConveyor = hardwareMap.dcMotor.get("conveyor");
+        rope = hardwareMap.dcMotor.get("rope");
 
         rightPoleGrab = hardwareMap.servo.get("right_res");
         leftPoleGrab = hardwareMap.servo.get("left_res");
@@ -53,8 +53,17 @@ public class PopsicleDrive extends OpMode {
         rightDrive.setPower(rightY);
         leftDrive.setPower(leftY);
 
-        rightArm.setPower(-gamepad2.right_stick_y);
-        leftArm.setPower(-gamepad2.left_stick_y);
+        float sexyStan = -gamepad2.right_stick_y;
+
+        arm.setPower(sexyStan);
+
+        if(sexyStan > 0){
+            rope.setPower(-1);
+        } else if (sexyStan < 0){
+            rope.setPower(1);
+        } else {
+            rope.setPower(0);
+        }
 
         if(gamepad2.left_bumper){
             sweeper.setPower(-1);
@@ -64,7 +73,15 @@ public class PopsicleDrive extends OpMode {
             sweeper.setPower(0);
         }
 
-        /*
+        if(gamepad1.dpad_up){
+            rope.setPower(1);
+        } else if (gamepad1.dpad_down){
+            rope.setPower(-1);
+        } else {
+            rope.setPower(0);
+        }
+
+
         if(gamepad1.left_bumper){
             armConveyor.setPower(-1);
         } else if(gamepad1.right_bumper){
@@ -72,7 +89,7 @@ public class PopsicleDrive extends OpMode {
         } else {
             armConveyor.setPower(0);
         }
-         */
+
 
         //Servo positions need to be re-found. Could use telemetry and slowly adding a position up and down like OG code
         if (gamepad2.a) {
