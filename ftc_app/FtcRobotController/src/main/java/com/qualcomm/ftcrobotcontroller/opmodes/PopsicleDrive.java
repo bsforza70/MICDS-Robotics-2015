@@ -24,6 +24,7 @@ public class PopsicleDrive extends OpMode {
     ColorSensor allianceSensor;
 
     int numOpLoops = 1;
+    boolean driveToggle = true;
 
     @Override
     public void init() {
@@ -47,11 +48,26 @@ public class PopsicleDrive extends OpMode {
 
     @Override
     public void loop() {
+
+
         float leftY = -gamepad1.left_stick_y;
         float rightY = -gamepad1.right_stick_y;
 
-        rightDrive.setPower(rightY);
-        leftDrive.setPower(leftY);
+        if(driveToggle) {
+            rightDrive.setPower(rightY);
+            leftDrive.setPower(leftY);
+        } else {
+            rightDrive.setPower(-rightY);
+            leftDrive.setPower(-leftY);
+        }
+
+        if(gamepad1.a){
+            driveToggle = true;
+        }
+
+        if(gamepad1.b){
+            driveToggle = false;
+        }
 
         float sexyStan = -gamepad2.right_stick_y;
 
@@ -71,14 +87,6 @@ public class PopsicleDrive extends OpMode {
             sweeper.setPower(1);
         } else {
             sweeper.setPower(0);
-        }
-
-        if(gamepad1.dpad_up){
-            rope.setPower(1);
-        } else if (gamepad1.dpad_down){
-            rope.setPower(-1);
-        } else {
-            rope.setPower(0);
         }
 
 

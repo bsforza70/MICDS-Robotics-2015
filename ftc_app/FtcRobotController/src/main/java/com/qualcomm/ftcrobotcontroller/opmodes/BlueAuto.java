@@ -138,3 +138,4 @@ public class BlueAuto extends LinearOpMode {
     } //true if red, false if blue
 
 }   //TO-DO: Do the two measurements and test!
+    // Also flip it around for the sensor to read since it's on the back
