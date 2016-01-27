@@ -76,6 +76,9 @@ public class BucketTest extends LinearOpMode {
         turnLeft(halfTurnTime);
         forward(blockTime);
         stoperino();
+        arm.setPower(1);
+        sleep(500);
+        arm.setPower(0);
         armConveyor.setPower(0.5);
         sleep(4000);
         armConveyor.setPower(0);
