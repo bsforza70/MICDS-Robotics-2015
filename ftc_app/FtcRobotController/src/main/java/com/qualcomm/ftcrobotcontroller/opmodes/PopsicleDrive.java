@@ -80,9 +80,9 @@ public class PopsicleDrive extends OpMode {
         arm.setPower(sexyStan);
 
         if(sexyStan > 0){
-            rope.setPower(-0.5);
+            rope.setPower(-0.25);
         } else if (sexyStan < 0){
-            rope.setPower(0.5);
+            rope.setPower(0.25);
         } else {
             rope.setPower(0);
         }
@@ -106,21 +106,34 @@ public class PopsicleDrive extends OpMode {
 
 
         //Servo positions need to be re-found. Could use telemetry and slowly adding a position up and down like OG code
+        /*
         if (gamepad2.a) {
             leftPoleGrab.setPosition(0.75);  //Down
         }
+        */
 
+        if(gamepad2.a){
+            if(leftPoleGrab.getPosition() == 0){
+                telemetry.addData("Left Servo", "STOP - Nicole Truman-Shaw");
+            }
+            leftPoleGrab.setPosition(leftPoleGrab.getPosition() - 0.05);
+        }
+
+        /*
         if (gamepad2.b) {
             leftPoleGrab.setPosition(.14);   //Up
         }
+        */
 
         if (gamepad2.x) {
             rightPoleGrab.setPosition(0.5);  //Down
         }
 
+
         if (gamepad2.y) {
             rightPoleGrab.setPosition(1);    //Up
         }
+
         telemetry.addData("Text", "Running!");
 
         //Setting the motor controller to be able to be read as much as possible (takes time to switch)
