@@ -33,7 +33,7 @@ public class RedAuto extends LinearOpMode {
         allianceSensor = hardwareMap.colorSensor.get("ally_sensor");
 
         //reverses the right motor
-        rightDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
 
         //turns on the LED on the color sensor
         allianceSensor.enableLed(true);

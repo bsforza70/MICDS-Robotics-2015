@@ -30,7 +30,7 @@ public class PopsicleDrive extends OpMode {
     public void init() {
         rightDrive = hardwareMap.dcMotor.get("right_drive");
         leftDrive = hardwareMap.dcMotor.get("left_drive");
-        //driveController = hardwareMap.dcMotorController.get("drive");
+        driveController = hardwareMap.dcMotorController.get("drive");
         arm = hardwareMap.dcMotor.get("arm");
         sweeper = hardwareMap.dcMotor.get("sweeper");
         armConveyor = hardwareMap.dcMotor.get("conveyor");
@@ -42,10 +42,10 @@ public class PopsicleDrive extends OpMode {
         lineSensor = hardwareMap.lightSensor.get("line_sensor");
         allianceSensor = hardwareMap.colorSensor.get("ally_sensor");
 
-        //driveController.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
+        driveController.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
 
         //reverses the right motor
-        rightDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class PopsicleDrive extends OpMode {
         telemetry.addData("Text", "Running!");
 
         //Setting the motor controller to be able to be read as much as possible (takes time to switch)
-        /*if(numOpLoops % 17 == 0){
+        if(numOpLoops % 17 == 0){
             driveController.setMotorControllerDeviceMode(DcMotorController.DeviceMode.READ_ONLY);
         }
 
@@ -137,6 +137,6 @@ public class PopsicleDrive extends OpMode {
         }
 
         numOpLoops++;
-        */
+
     }
 }   //TO-DO: Write stuff for everything else the robot might have on it.
