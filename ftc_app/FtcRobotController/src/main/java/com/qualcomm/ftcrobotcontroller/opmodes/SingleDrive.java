@@ -2,12 +2,13 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+//import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.LightSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class PopsicleDrive extends OpMode {
+public class SingleDrive extends OpMode {
 
     DcMotor rightDrive;
     DcMotor leftDrive;
@@ -30,7 +31,7 @@ public class PopsicleDrive extends OpMode {
     public void init() {
         leftDrive = hardwareMap.dcMotor.get("right_drive");
         rightDrive = hardwareMap.dcMotor.get("left_drive");
-        driveController = hardwareMap.dcMotorController.get("drive");
+        //driveController = hardwareMap.dcMotorController.get("drive");
         arm = hardwareMap.dcMotor.get("arm");
         sweeper = hardwareMap.dcMotor.get("sweeper");
         armConveyor = hardwareMap.dcMotor.get("conveyor");
@@ -42,9 +43,9 @@ public class PopsicleDrive extends OpMode {
         lineSensor = hardwareMap.lightSensor.get("line_sensor");
         allianceSensor = hardwareMap.colorSensor.get("ally_sensor");
 
-        driveController.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
+        //driveController.setMotorControllerDeviceMode(DcMotorController.DeviceMode.WRITE_ONLY);
 
-        //reverses the left motor
+        //reverses the right motor
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
     }
 
@@ -75,30 +76,26 @@ public class PopsicleDrive extends OpMode {
             driveToggle = false;
         }
 
-        float sexyStan = -gamepad2.right_stick_y;
-
-        arm.setPower(sexyStan);
-
-        if(sexyStan > 0){
+        if(gamepad1.back){
             rope.setPower(-0.25);
-        } else if (sexyStan < 0){
+        } else if (gamepad1.start){
             rope.setPower(0.25);
         } else {
             rope.setPower(0);
         }
 
-        if(gamepad2.left_bumper){
+        if(gamepad1.left_bumper){
             sweeper.setPower(-1);
-        } else if(gamepad2.right_bumper){
+        } else if(gamepad1.right_bumper){
             sweeper.setPower(1);
         } else {
             sweeper.setPower(0);
         }
 
 
-        if(gamepad1.left_bumper){
+        if(gamepad1.dpad_left){
             armConveyor.setPower(-1);
-        } else if(gamepad1.right_bumper){
+        } else if(gamepad1.dpad_right){
             armConveyor.setPower(1);
         } else {
             armConveyor.setPower(0);
@@ -112,29 +109,28 @@ public class PopsicleDrive extends OpMode {
         }
         */
 
-        if(gamepad2.a){
-            if(leftPoleGrab.getPosition() == 0){
-                telemetry.addData("Left Servo", "STOP - Nicole Truman-Shaw");
+        if(gamepad1.x){
+            if(leftPoleGrab.getPosition() == 0 || rightPoleGrab.getPosition() == 0){
+                telemetry.addData("Servo", "STOP - Nicole Truman-Shaw");
+            } else {
+                leftPoleGrab.setPosition(leftPoleGrab.getPosition() - 0.05);
+                rightPoleGrab.setPosition(rightPoleGrab.getPosition() - 0.05);
             }
-            leftPoleGrab.setPosition(leftPoleGrab.getPosition() - 0.05);
         }
 
-        /*
-        if (gamepad2.b) {
-            leftPoleGrab.setPosition(.14);   //Up
-        }
-        */
-
-        if (gamepad2.x) {
-            rightPoleGrab.setPosition(0.5);  //Down
-        }
-
-
-        if (gamepad2.y) {
-            rightPoleGrab.setPosition(1);    //Up
+        if(gamepad1.y){
+            if(leftPoleGrab.getPosition() == 1 || rightPoleGrab.getPosition() == 1){
+                telemetry.addData("Servo", "STOP - Nicole Truman-Shaw");
+            } else {
+                leftPoleGrab.setPosition(leftPoleGrab.getPosition() + 0.05);
+                rightPoleGrab.setPosition(rightPoleGrab.getPosition() + 0.05);
+            }
         }
 
-        telemetry.addData("Text", "Running!");
+
+        }
+
+        //telemetry.addData("Text", "Running!");
 
         /*
         //Setting the motor controller to be able to be read as much as possible (takes time to switch)
@@ -153,5 +149,4 @@ public class PopsicleDrive extends OpMode {
         numOpLoops++;
         */
 
-    }
-}   //TO-DO: Write stuff for everything else the robot might have on it.
+    } //TO-DO: Write stuff for everything else the robot might have on it.

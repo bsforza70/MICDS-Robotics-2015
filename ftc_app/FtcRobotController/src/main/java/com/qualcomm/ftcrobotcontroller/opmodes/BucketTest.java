@@ -49,17 +49,17 @@ public class BucketTest extends LinearOpMode {
         waitForStart();
 
         //Time it takes to move 1 floor block (or 60 cm) below, calculations based off of that.
-        long blockTime = 2280;
+        long blockTime = 1270;
 
         //Time it takes to turn a quarter-turn (90 degrees) below, calculations based off of that.
         //Reminder that these are in ms
-        long turnTime = 4750;
+        long turnTime = 1398;
 
         //half of this (45 degrees) is...
-        long halfTurnTime = 2375;
+        long halfTurnTime = 699;
 
         //3.535 times blockTime
-        long bucketDistance = 8061;
+        long bucketDistance = 4489;
 
         //Starting to actually move, better scream it to the world so everyone knows
         telemetry.addData("Done?", "Nope!");
@@ -75,7 +75,7 @@ public class BucketTest extends LinearOpMode {
         //beacon stuff here
         turnLeft(halfTurnTime);
         forward(blockTime);
-        stoperino();
+        stoperino(200);
         arm.setPower(1);
         sleep(500);
         arm.setPower(0);
@@ -158,9 +158,10 @@ public class BucketTest extends LinearOpMode {
         telemetry.addData("Status", "Turning Left!");
     } // right motor reversed, left on
 
-    public void stoperino() throws InterruptedException{
+    public void stoperino(long stopTime) throws InterruptedException{
         rightDrive.setPower(0);
         leftDrive.setPower(0);
+        sleep(stopTime);
         //SWAG OUT
     }
 
