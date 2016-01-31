@@ -76,6 +76,16 @@ public class SingleDrive extends OpMode {
             driveToggle = false;
         }
 
+        if(gamepad1.left_trigger > 0 && gamepad1.right_trigger > 0){
+            telemetry.addData("Arm (Both Ways)", "STOP - Nicole Truman-Shaw");
+        } else if (gamepad1.left_trigger > 0) {
+            arm.setPower(-1);
+        } else if(gamepad1.right_trigger > 0){
+            arm.setPower(1);
+        } else {
+            arm.setPower(0);
+        }
+
         if(gamepad1.back){
             rope.setPower(-0.25);
         } else if (gamepad1.start){

@@ -51,12 +51,11 @@ public class PopsicleDrive extends OpMode {
     @Override
     public void loop() {
 
-
         float leftY = -gamepad1.left_stick_y;
         float rightY = -gamepad1.right_stick_y;
 
-        rightDrive.setPower(rightY);
-        leftDrive.setPower(leftY);
+        //rightDrive.setPower(rightY);
+        //leftDrive.setPower(leftY);
 
         if(driveToggle) {
             rightDrive.setPower(rightY);
@@ -79,9 +78,9 @@ public class PopsicleDrive extends OpMode {
 
         arm.setPower(sexyStan);
 
-        if(sexyStan > 0){
+        if(gamepad2.back || gamepad2.left_stick_button || gamepad2.right_stick_button || gamepad2.left_trigger > 0){
             rope.setPower(-0.25);
-        } else if (sexyStan < 0){
+        } else if (gamepad2.start || gamepad2.right_trigger > 0){
             rope.setPower(0.25);
         } else {
             rope.setPower(0);
@@ -110,7 +109,6 @@ public class PopsicleDrive extends OpMode {
         if (gamepad2.a) {
             leftPoleGrab.setPosition(0.75);  //Down
         }
-        */
 
         if(gamepad2.a){
             if(leftPoleGrab.getPosition() == 0){
@@ -119,11 +117,11 @@ public class PopsicleDrive extends OpMode {
             leftPoleGrab.setPosition(leftPoleGrab.getPosition() - 0.05);
         }
 
-        /*
+
         if (gamepad2.b) {
             leftPoleGrab.setPosition(.14);   //Up
         }
-        */
+
 
         if (gamepad2.x) {
             rightPoleGrab.setPosition(0.5);  //Down
@@ -133,6 +131,7 @@ public class PopsicleDrive extends OpMode {
         if (gamepad2.y) {
             rightPoleGrab.setPosition(1);    //Up
         }
+        */
 
         telemetry.addData("Text", "Running!");
 
@@ -155,3 +154,4 @@ public class PopsicleDrive extends OpMode {
 
     }
 }   //TO-DO: Write stuff for everything else the robot might have on it.
+    // Correct the motors being weird af on autonomous and such from the quick fix left/right

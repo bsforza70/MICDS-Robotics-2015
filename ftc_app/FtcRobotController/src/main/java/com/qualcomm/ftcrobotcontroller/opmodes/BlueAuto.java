@@ -67,7 +67,7 @@ public class BlueAuto extends LinearOpMode {
         //Move from start to beacon
         forward(blockTime);
         stoperino(200);
-        turnRight(halfTurnTime);
+        turnLeft(halfTurnTime);
         stoperino(200);
         /*
         while (lineSensor.getLightDetected() < 0.5){
@@ -76,7 +76,7 @@ public class BlueAuto extends LinearOpMode {
         */
         forward(3592); //It was bad lol
 
-        turnRight(halfTurnTime);
+        turnLeft(halfTurnTime);
 
         //Light Sensor Stuff for Beacon (Assuming light sensor is on right side of 'bot
         if(checkColor()){
@@ -112,6 +112,7 @@ public class BlueAuto extends LinearOpMode {
         sleep(500);
         stoperino(200);
 
+        stoperino(7000);
         //Move from Beacon to mountain on other side
         turnLeft(turnTime * 2);
         stoperino(200);

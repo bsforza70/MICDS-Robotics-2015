@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.LightSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class RedAuto extends LinearOpMode {
+public class ForwardPls extends LinearOpMode {
 
     DcMotor rightDrive;
     DcMotor leftDrive;
@@ -26,8 +26,8 @@ public class RedAuto extends LinearOpMode {
     //Write this when making an autonomous program
     @Override
     public void runOpMode() throws InterruptedException {
-        leftDrive = hardwareMap.dcMotor.get("right_drive");
-        rightDrive = hardwareMap.dcMotor.get("left_drive");
+        rightDrive = hardwareMap.dcMotor.get("right_drive");
+        leftDrive = hardwareMap.dcMotor.get("left_drive");
         driveController = hardwareMap.dcMotorController.get("drive");
         arm = hardwareMap.dcMotor.get("arm");
         sweeper = hardwareMap.dcMotor.get("sweeper");
@@ -41,7 +41,7 @@ public class RedAuto extends LinearOpMode {
         allianceSensor = hardwareMap.colorSensor.get("ally_sensor");
 
         //reverses the right motor
-        rightDrive.setDirection(DcMotor.Direction.REVERSE);
+        leftDrive.setDirection(DcMotor.Direction.REVERSE);
 
         //turns on the LED on the color sensor
         allianceSensor.enableLed(true);
@@ -58,69 +58,18 @@ public class RedAuto extends LinearOpMode {
         //half of this (45 degrees) is...
         long halfTurnTime = 699;
 
+        //3.535 times blockTime
+        long bucketDistance = 4489;
+
         //Starting to actually move, better scream it to the world so everyone knows
         telemetry.addData("Done?", "Nope!");
 
         //We don't need this on all the time.
-        allianceSensor.enableLed(false);
+        //allianceSensor.enableLed(false);
 
         //Move from start to beacon
-        forward(blockTime);
-        stoperino(200);
-        turnRight(halfTurnTime);
-        stoperino(200);
-        /*
-        while (lineSensor.getLightDetected() < 0.5){
-            forward(0); //Go until you get to the guiding line (if bad, this is about 2.828 blocks)
-        }
-        */
-        forward(3592); //It was bad lol
-
-        turnRight(halfTurnTime); //Robot should be facing the beacon head on now :)
-
-        //Light Sensor Stuff for Beacon
-        if(checkColor()){
-            //matching alliance is detected (red)
-            turnRight(halfTurnTime);
-            stoperino(200);
-            rightDrive.setPower(1.0);
-            leftDrive.setPower(0.5);
-            sleep(1000);
-            stoperino(200);
-            //now return to your original position ;)
-            rightDrive.setPower(-1.0);
-            leftDrive.setPower(-0.5);
-            sleep(1000);
-            stoperino(200);
-        } else {
-            //other alliance is detected (blue
-            turnLeft(halfTurnTime);
-            rightDrive.setPower(0.5);
-            leftDrive.setPower(1.0);
-            sleep(1000);
-            stoperino(200);
-            //now return to your original position ;)
-            rightDrive.setPower(-0.5);
-            leftDrive.setPower(-1.0);
-            sleep(1000);
-            stoperino(200);
-        }
-        
-        //Move back a little bit so you turn cleanly
-        rightDrive.setPower(-1.0);
-        leftDrive.setPower(-1.0);
-        sleep(500);
-        stoperino(200);
-
-stoperino(7000);
-        //Move from Beacon to mountain on other side
-        turnRight(turnTime * 2);
-        stoperino(200);
-        forward(blockTime * 2);
-        stoperino(200);
-        turnLeft(halfTurnTime);
-        stoperino(200);
-        forward(blockTime * 2);
+        stoperino(0);
+        forward(20000);
 
         //Stop moving after
         rightDrive.setPower(0);
@@ -168,4 +117,4 @@ stoperino(7000);
     } //true if red, false if blue
 
 }   //TO-DO: Do the two measurements and test!
-    // Also flip it around for the sensor to read since it's on the back
+// Also flip it around for the sensor to read since it's on the back
