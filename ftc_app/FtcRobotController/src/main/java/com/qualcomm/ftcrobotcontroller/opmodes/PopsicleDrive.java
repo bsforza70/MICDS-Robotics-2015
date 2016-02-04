@@ -46,6 +46,9 @@ public class PopsicleDrive extends OpMode {
 
         //reverses the left motor
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
+
+        rightPoleGrab.setPosition(0);
+        leftPoleGrab.setPosition(0.9);
     }
 
     @Override
@@ -79,9 +82,9 @@ public class PopsicleDrive extends OpMode {
         arm.setPower(sexyStan);
 
         if(gamepad2.back || gamepad2.left_stick_button || gamepad2.right_stick_button || gamepad2.left_trigger > 0){
-            rope.setPower(-0.25);
+            rope.setPower(-0.35);
         } else if (gamepad2.start || gamepad2.right_trigger > 0){
-            rope.setPower(0.25);
+            rope.setPower(0.35);
         } else {
             rope.setPower(0);
         }
@@ -95,9 +98,9 @@ public class PopsicleDrive extends OpMode {
         }
 
 
-        if(gamepad1.left_bumper){
+        if(gamepad1.left_bumper || gamepad1.dpad_left){
             armConveyor.setPower(-1);
-        } else if(gamepad1.right_bumper){
+        } else if(gamepad1.right_bumper || gamepad1.dpad_right){
             armConveyor.setPower(1);
         } else {
             armConveyor.setPower(0);
@@ -105,35 +108,45 @@ public class PopsicleDrive extends OpMode {
 
 
         //Servo positions need to be re-found. Could use telemetry and slowly adding a position up and down like OG code
+
         /*
-        if (gamepad2.a) {
-            leftPoleGrab.setPosition(0.75);  //Down
-        }
-
-        if(gamepad2.a){
-            if(leftPoleGrab.getPosition() == 0){
+        if(gamepad1.x){
+            if(rightPoleGrab.getPosition() == 0 || leftPoleGrab.getPosition() == 0){
+                telemetry.addData("Right Servo", "STOP - Nicole Truman-Shaw");
                 telemetry.addData("Left Servo", "STOP - Nicole Truman-Shaw");
+            } else {
+                rightPoleGrab.setPosition(rightPoleGrab.getPosition() - 0.01);
+                leftPoleGrab.setPosition(leftPoleGrab.getPosition() - 0.01);
             }
-            leftPoleGrab.setPosition(leftPoleGrab.getPosition() - 0.05);
         }
 
 
-        if (gamepad2.b) {
-            leftPoleGrab.setPosition(.14);   //Up
-        }
-
-
-        if (gamepad2.x) {
-            rightPoleGrab.setPosition(0.5);  //Down
-        }
-
-
-        if (gamepad2.y) {
-            rightPoleGrab.setPosition(1);    //Up
+        if (gamepad1.y) {
+            if(rightPoleGrab.getPosition() == 1 || leftPoleGrab.getPosition() == 1){
+                telemetry.addData("Right Servo", "STOP - Nicole Truman-Shaw");
+                telemetry.addData("Left Servo", "STOP - Nicole Truman-Shaw");
+            } else {
+                rightPoleGrab.setPosition(rightPoleGrab.getPosition() + 0.01);
+                leftPoleGrab.setPosition(leftPoleGrab.getPosition() + 0.01);
+            }
         }
         */
 
+        //Up
+        if(gamepad1.y){
+            rightPoleGrab.setPosition(0);
+            leftPoleGrab.setPosition(0.9);
+        }
+
+        //Down
+        if(gamepad1.x){
+            rightPoleGrab.setPosition(0.4);
+            leftPoleGrab.setPosition(0.5);
+        }
+
         telemetry.addData("Text", "Running!");
+        telemetry.addData("Right Servo", rightPoleGrab.getPosition());
+        telemetry.addData("Left Servo", leftPoleGrab.getPosition());
 
         /*
         //Setting the motor controller to be able to be read as much as possible (takes time to switch)

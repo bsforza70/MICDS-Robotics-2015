@@ -63,6 +63,7 @@ public class FtcOpModeRegister implements OpModeRegister {
     //manager.register("LinearPopsicleDrive", LinearPopsicleDrive.class);
       manager.register("PopsicleDrive", PopsicleDrive.class);
       manager.register("SingleDrive", SingleDrive.class);
+      manager.register("BabbyBot", BabbyBot.class);
       manager.register("RedAuto", RedAuto.class);
       manager.register("BlueAuto", BlueAuto.class);
       manager.register("BucketTest", BucketTest.class);
